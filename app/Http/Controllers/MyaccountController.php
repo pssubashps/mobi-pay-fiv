@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 class MyaccountController extends Controller
 {
     /**
@@ -34,9 +35,30 @@ class MyaccountController extends Controller
     /**
      * 
      */
-    public function getstripe () {
+    public function getstripe (Request $request) {
 
-        return view('myaccount/getstripe');
+        if ($request->isMethod('post')) {
+            
+              $validatedData = $request->validate([
+                  'user_stripe_api_key' => 'required|string|max:255',
+                  'user_stripe_api_secret' => 'required|string|max:255',
+               
+                
+              ]);
+  
+              $update = [
+                  'user_stripe_api_key' => $request->input('user_stripe_api_key')    ,    
+                  'user_stripe_api_secret' => $request->input('user_stripe_api_secret')        
+              ];
+ 
+              DB::table('users')
+              ->where('id', Auth::user()->id)
+              ->update($update);
+              
+          }
+        $users = DB::table('users')->where('id', Auth::user()->id)->first();
+       // var_dump($users);exit;
+        return view('myaccount/getstripe',['user' => $users]);
     }
 
 

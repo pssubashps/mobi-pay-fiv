@@ -5,69 +5,43 @@
     <div class="row">
         <div class="col-md-12">
             <div class="panel panel-default">
-                <div class="panel-heading">Update Twilio Info</div>
+                <div class="panel-heading">Update Stripe Info</div>
 
                 <div class="panel-body">
-                    <form class="form-horizontal" method="POST" action="{{ route('user_update',$user->id) }}">
+                    <form class="form-horizontal" method="POST" action="{{ route('myaccount_stripe_update') }}">
                         {{ csrf_field() }}
 
-                        <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                            <label for="name" class="col-md-4 control-label">Name</label>
+                        <div class="form-group{{ $errors->has('user_stripe_api_key') ? ' has-error' : '' }}">
+                            <label for="name" class="col-md-4 control-label">API Key</label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control" name="name" value="{{ old('name', $user->name) }}" required autofocus>
+                                <input id="user_stripe_api_key" type="text" class="form-control" name="user_stripe_api_key" value="{{ old('user_stripe_api_key', $user->user_stripe_api_key) }}" required autofocus>
 
-                                @if ($errors->has('name'))
+                                @if ($errors->has('user_stripe_api_key'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('name') }}</strong>
+                                        <strong>{{ $errors->first('user_stripe_api_key') }}</strong>
                                     </span>
                                 @endif
                             </div>
                         </div>
 
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
+                        <div class="form-group{{ $errors->has('user_stripe_api_secret') ? ' has-error' : '' }}">
+                            <label for="email" class="col-md-4 control-label">Secret</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="email" disabled class="form-control" name="email" value="{{ old('email', $user->email) }}" required>
+                                <input id="email" type="text"  class="form-control" name="user_stripe_api_secret" value="{{ old('user_stripe_api_secret', $user->user_stripe_api_secret) }}" required>
 
-                                @if ($errors->has('email'))
+                                @if ($errors->has('user_stripe_api_secret'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
+                                        <strong>{{ $errors->first('user_stripe_api_secret') }}</strong>
                                     </span>
                                 @endif
                             </div>
                         </div>
 
-                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label for="password" class="col-md-4 control-label">Password</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control" name="password" >
-
-                                @if ($errors->has('password'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group{{ $errors->has('twilio_phonenumber') ? ' has-error' : '' }}">
+                       
 
                         
-                            <label for="password-confirm" class="col-md-4 control-label">Twilio Phone Number</label>
-
-                            <div class="col-md-6">
-                                <input id="twilio_phonenumber" disabled type="text" class="form-control" value="{{ old('twilio_phonenumber', $user->twilio_phonenumber) }}" name="twilio_phonenumber" required>
-
-                                @if ($errors->has('twilio_phonenumber'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('twilio_phonenumber') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
 
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">

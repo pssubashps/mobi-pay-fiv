@@ -26,5 +26,5 @@ Route::post('/user/add', 'UserController@add')->name('user_post_add');
 Route::get('/user/{id}', 'UserController@update')->name('user_get');
 Route::post('/user/{id}', 'UserController@update')->name('user_update');
 
-Route::get('/myaccount/stripe/{id}', 'MyaccountController@getstripe')->name('myaccount_stripe_get');
-Route::post('/myaccount/stripe/{id}', 'MyaccountController@update')->name('myaccount_stripe_update');
+Route::get('/myaccount/stripe', 'MyaccountController@getstripe')->name('myaccount_stripe_get');
+Route::post('/myaccount/stripe', 'MyaccountController@getstripe')->name('myaccount_stripe_update');
